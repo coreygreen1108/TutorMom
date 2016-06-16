@@ -27,7 +27,7 @@
 // },3000)
 
 // Get the modal
-alert('loaded');
+
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
