@@ -34,16 +34,11 @@ chrome.tabs.onHighlighted.addListener(function(tab){
 	window.currentTab = tab; 
 })
 
-window.doMath = true; 
-
 chrome.tabs.onCreated.addListener(function(tab){
-	// alert(tab.id);
-	// if(){
 		window.currentTabId = tab.id;
-		//alert('got here');
-		chrome.tabs.update(tab.id, {
-			url: 'questionform.html'
-		})
+			chrome.tabs.update(tab.id, {
+				url: 'questionform.html'
+			})
 });
 // 	alert(tab);
 // 	$(document).ready(function () {
