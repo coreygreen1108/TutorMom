@@ -27,7 +27,8 @@
 // },3000)
 // alert('extension updated');
 
-window.currentTab;
+
+window.currentTabId;
 
 chrome.tabs.onHighlighted.addListener(function(tab){
 	window.currentTab = tab; 
@@ -38,19 +39,12 @@ window.doMath = true;
 chrome.tabs.onCreated.addListener(function(tab){
 	// alert(tab.id);
 	// if(){
-		alert('got here');
+		window.currentTabId = tab.id;
+		//alert('got here');
 		chrome.tabs.update(tab.id, {
 			url: 'questionform.html'
 		})
 });
-
-window.keepGoing = function(){
-	// alert('got to this function');
-	console.log('geoff thinks we will see this too')
-	chrome.tabs.update(currentTab.id, {
-		url: 'http://www.facebook.com'
-	})
-}
 // 	alert(tab);
 // 	$(document).ready(function () {
 // 		//alert('inside doc ready');
