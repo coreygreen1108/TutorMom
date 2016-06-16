@@ -25,34 +25,58 @@
 // 		})
 // 	}
 // },3000)
+// alert('extension updated');
 
-// Get the modal
+window.currentTab;
 
-var modal = document.getElementById('myModal');
+chrome.tabs.onHighlighted.addListener(function(tab){
+	window.currentTab = tab; 
+})
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+window.doMath = true; 
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-};
-
-document.addEventListener('DOMContentLoaded', function () {
-  var modal = document.getElementById('myModal');
-  modal.style.display = "block";
+chrome.tabs.onCreated.addListener(function(tab){
+	// alert(tab.id);
+	// if(){
+		alert('got here');
+		chrome.tabs.update(tab.id, {
+			url: 'questionform.html'
+		})
 });
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-};
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
+window.keepGoing = function(){
+	// alert('got to this function');
+	console.log('geoff thinks we will see this too')
+	chrome.tabs.update(currentTab.id, {
+		url: 'http://www.facebook.com'
+	})
+}
+// 	alert(tab);
+// 	$(document).ready(function () {
+// 		//alert('inside doc ready');
+// 		alert('THE BODYYYYY ' + $('body'))
+// 		$("body").append("<h1>HI</h1>");
+// 		//chrome.runtime.getBackgroundPage(function(page){
+// 		//$("body").append($(page))	
+// 	});
+// });
+
+// btn.onclick = function() {
+//     modal.style.display = "block";
+// };
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   var modal = document.getElementById('myModal');
+//   modal.style.display = "block";
+// });
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = "none";
+// };
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// };
