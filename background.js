@@ -22,19 +22,18 @@ function convertToMilli(timeInHours){
 	return timeInHours * 3.6e+6;
 }
 
-var ActivityControl = {
+ActivityControl = {
 	startTime: 9,
 	offset: 12, 
-	stopTime: startTime + ActivityControl.offset,
-	numTimes: 2160
+	stopTime: 21,
+	numTimes: 4320
 }
 
 // alert(ActivityControl.startTime + "    STOP TIME     " + ActivityControl.stopTime)
 
 setInterval(function(){
 	chrome.mathDone = false; 
-}, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / numTimes);
-
+}, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);
 
 // setInterval(function () {
 //   alert('updating');
