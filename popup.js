@@ -28,6 +28,8 @@ $('document').ready(function() {
             stopTime: settings.stopTime,
             numTimes: settings.numTimes
           }
+        }, function () {
+          chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'settings updated!'});
         });
       } else {
         $('#pwalert').show();
