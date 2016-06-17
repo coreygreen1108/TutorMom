@@ -3,11 +3,11 @@ $('document').ready(function() {
   $('#successalert').hide();
   var settings = {};
 
-  chrome.storage.local.get('ActivityControl', function (result) {
-    settings.startTime = result.ActivityControl.startTime;
-    settings.stopTime = result.ActivityControl.stopTime;
-    settings.numTimes = result.ActivityControl.numTimes;
-    settings.offset = result.ActivityControl.offset;
+  chrome.storage.local.get('settings', function (result) {
+    settings.startTime = result.settings.startTime;
+    settings.stopTime = result.settings.stopTime;
+    settings.numTimes = result.settings.numTimes;
+    settings.offset = result.settings.offset;
     $('#start').val(settings.startTime);
     $('#stop').val(settings.stopTime);
     $('#sessions').val(settings.numTimes);
@@ -22,7 +22,7 @@ $('document').ready(function() {
         settings.numTimes = $('#sessions').val() || settings.numTimes;
         settings.offset = settings.stopTime - settings.startTime;
         chrome.storage.local.set({
-          'ActivityControl': {
+          'settings': {
             startTime: settings.startTime,
             offset: settings.offset, 
             stopTime: settings.stopTime,

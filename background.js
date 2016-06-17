@@ -1,5 +1,10 @@
 var intervalId, 
-    settings = {};
+    settings = {
+      startTime: 9,
+      offset: 12, 
+      stopTime: 21,
+      numTimes: 24
+  };
 
 chrome.tabs.onUpdated.addListener(function(tab, info){
   if (info.url && !chrome.mathDone) {
@@ -19,16 +24,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       url: urlRedirect
     });
   } else if (request.message === 'settings updated!') {
-    chrome.storage.local.get('ActivityControl', function (result) {
-      settings.startTime = result.ActivityControl.startTime;
-      settings.stopTime = result.ActivityControl.stopTime;
-      settings.numTimes = result.ActivityControl.numTimes;
-      settings.offset = result.ActivityControl.offset;
-      window.clearInterval(intervalId);
-      intervalId = setInterval(function(){
-        chrome.mathDone = false; 
-      }, (convertToMilli(settings.stopTime) - convertToMilli(settings.startTime)) / settings.numTimes);
-    });
+    updateSettings();
   }
 });
 
@@ -36,15 +32,17 @@ function convertToMilli(timeInHours){
 	return timeInHours * 3.6e+6;
 }
 
-chrome.storage.local.set({
-  'ActivityControl': {
-  	startTime: 9,
-  	offset: 12, 
-  	stopTime: 21,
-  	numTimes: 24
-  }
-});
+function updateSettings() {
+  chrome.storage.local.get('settings', function (result) {
+    settings.startTime = result.settings.startTime || settings.startTime;
+    settings.stopTime = result.settings.stopTime || settings.stopTime;
+    settings.numTimes = result.settings.numTimes || settings.numTimes;
+    settings.offset = result.settings.offset || settings.offset;
+    window.clearInterval(intervalId);
+      intervalId = setInterval(function(){
+      chrome.mathDone = false; 
+    }, (convertToMilli(settings.stopTime) - convertToMilli(settings.startTime)) / settings.numTimes);
+  });
+}
 
-intervalId = setInterval(function(){
-	chrome.mathDone = false; 
-}, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);
+updateSettings();
