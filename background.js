@@ -15,17 +15,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === 'math done!') {
     chrome.mathDone = true;
     chrome.tabs.update(window.currentTabId, {
-        url: urlRedirect
-      });
-  } else if (request.message === 'settings updated!') {
-    ActivityControl = request.newSettings;
-    window.clearInterval(intervalId);
-   	intervalId = setInterval(function(){
-	chrome.mathDone = false; }, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);
-  } else if (request.message === 'get me the current settings!') {
-    chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'current settings',
-      settings: ActivityControl
-  });
+      url: urlRedirect
+    });
   }
 });
 
@@ -33,12 +24,14 @@ function convertToMilli(timeInHours){
 	return timeInHours * 3.6e+6;
 }
 
-ActivityControl = {
-	startTime: 11,
-	offset: 12, 
-	stopTime: 21,
-	numTimes: 20
-};
+chrome.storage.local.set({
+  'ActivityControl': {
+  	startTime: 9,
+  	offset: 12, 
+  	stopTime: 21,
+  	numTimes: 24
+  }
+});
 
 intervalId = setInterval(function(){
 	chrome.mathDone = false; 

@@ -1,38 +1,37 @@
 $('document').ready(function() {
   $('#pwalert').hide();
   $('#successalert').hide();
-  var ActivityControl;
+  var settings = {};
 
-  chrome.runtime.onMessage.addListener(function (request) {
-    if (request.message === 'current settings') {
-      ActivityControl = {
-        startTime: request.settings.startTime,
-        offset: request.settings.offset, 
-        stopTime: request.settings.stopTime,
-        numTimes: request.settings.numTimes
-      };
-
-      $('#start').val(ActivityControl.startTime);
-      $('#stop').val(ActivityControl.stopTime);
-      $('#sessions').val(ActivityControl.numTimes);
-    }
-  });
-
-  chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'get me the current settings!'
+  chrome.storage.local.get('ActivityControl', function (result) {
+    settings.startTime = result.ActivityControl.startTime;
+    settings.stopTime = result.ActivityControl.stopTime;
+    settings.numTimes = result.ActivityControl.numTimes;
+    settings.offset = result.ActivityControl.offset;
+    $('#start').val(settings.startTime);
+    $('#stop').val(settings.stopTime);
+    $('#sessions').val(settings.numTimes);
   });
 
   $('#update').on('click', function () {
       if($('#pw').val() == 'password'){
         $('pwalert').hide();
         $('#successalert').show();
-        ActivityControl.startTime = $('#start').val() || ActivityControl.startTime;
-        ActivityControl.stopTime = $('#stop').val() || ActivityControl.stopTime;
-        ActivityControl.numTimes = $('#sessions').val() || ActivityControl.numTimes;
-        ActivityControl.offset = ActivityControl.stopTime - ActivityControl.startTime;
-        chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'settings updated!', newSettings: ActivityControl});
+        settings.startTime = $('#start').val() || settings.startTime;
+        settings.stopTime = $('#stop').val() || settings.stopTime;
+        settings.numTimes = $('#sessions').val() || settings.numTimes;
+        settings.offset = settings.stopTime - settings.startTime;
+        chrome.storage.local.set({
+          'ActivityControl': {
+            startTime: settings.startTime,
+            offset: settings.offset, 
+            stopTime: settings.stopTime,
+            numTimes: settings.numTimes
+          }
+        });
       } else {
         $('#pwalert').show();
         $('#successalert').hide();
-      };
-    })
+      }
+  });
 });
