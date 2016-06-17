@@ -1,11 +1,11 @@
 {
   "name":"Tutor Mom",
-  "description":"This demonstrates time out",
+  "description":"No math no Facebook",
   "version":"1",
   "manifest_version":2,
   "background":{
-      "scripts":["background.js"]
-      //"page": "background.html"
+      "scripts":["background.js"],
+      "persistent": true
   },
   "permissions": ["tabs"]
 }
