@@ -32,13 +32,13 @@ window.currentTabId;
 
 chrome.tabs.onHighlighted.addListener(function(tab){
 	window.currentTab = tab; 
-})
+});
 
 chrome.tabs.onCreated.addListener(function(tab){
 		window.currentTabId = tab.id;
 			chrome.tabs.update(tab.id, {
 				url: 'questionform.html'
-			})
+			});
 });
 // 	alert(tab);
 // 	$(document).ready(function () {

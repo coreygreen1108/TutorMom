@@ -9,13 +9,13 @@ $('document').ready(function(){
 		if(answer.toLowerCase() == currentQuestion[1].toLowerCase()){
 			chrome.tabs.update(window.currentTabId, {
 				url: 'http://www.facebook.com'
-			})
+			});
 		}
 		else {
-			alert("WRONG! NO FACEBOOK FOR YOU!")
+			alert("WRONG! NO FACEBOOK FOR YOU!");
 		}
-	})
-})
+	});
+});
 
 // window.keepGoing = function(){
 // 	// alert('got to this function');
