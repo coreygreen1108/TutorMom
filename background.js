@@ -1,8 +1,9 @@
-var intervalId;
+var intervalId, 
+    settings = {};
 
 chrome.tabs.onUpdated.addListener(function(tab, info){
   if (info.url && !chrome.mathDone) {
-    if (info.url !== 'chrome-extension://dlfbaefmaboanbdoficjjdcpcnjikjba/questionform.html') {
+    if (info.url !== 'chrome-extension://ocghjfkhhhjbelfnfimcnkbocglmgibj/questionform.html') {
       urlRedirect = info.url;
     }
 		chrome.tabs.update(tab.id, {
@@ -16,6 +17,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     chrome.mathDone = true;
     chrome.tabs.update(window.currentTabId, {
       url: urlRedirect
+    });
+  } else if (request.message === 'settings updated!') {
+    chrome.storage.local.get('ActivityControl', function (result) {
+      settings.startTime = result.ActivityControl.startTime;
+      settings.stopTime = result.ActivityControl.stopTime;
+      settings.numTimes = result.ActivityControl.numTimes;
+      settings.offset = result.ActivityControl.offset;
+      window.clearInterval(intervalId);
+      intervalId = setInterval(function(){
+        chrome.mathDone = false; 
+      }, (convertToMilli(settings.stopTime) - convertToMilli(settings.startTime)) / settings.numTimes);
     });
   }
 });

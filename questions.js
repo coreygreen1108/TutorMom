@@ -18,7 +18,7 @@ $('document').ready(function(){
 		var answer = $('#answer').val();
 		if(answer.toLowerCase() == currentQuestion[1].toLowerCase()){
 			chrome.mathDone = true;
-			chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'math done!'});
+			chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'math done!'});
 		}
 		else {
 			alert("WRONG! TRY AGAIN!");
@@ -27,3 +27,4 @@ $('document').ready(function(){
 });
 
 //dlfbaefmaboanbdoficjjdcpcnjikjba
+//ocghjfkhhhjbelfnfimcnkbocglmgibj
