@@ -1,9 +1,9 @@
 $('document').ready(function(){
-	var questions = [['math', 'What is 2+2?', 4, 2, 3, 1],
-	['misc', 'What is Geoff\'s social security number?', 1, 2, 3, 4],
+	var questions = [['math', 'What is 2+2?', '4', 2, 3, 1],
+	['misc', 'What is Geoff\'s social security number?', '1', 2, 3, 4],
 	['science', 'What is the part of the brain thought responsible for memory?', 'hippocampus'],
 	['history', 'Who was the first president of the United States?', 'George Washington'],
-	['math', 'Solve this equation 4x + 3 = 19', 4]
+	['math', 'Solve this equation 4x + 3 = 19', '4']
 	];
 	
 	// var questions = [["What is 2+2?", '4'],
