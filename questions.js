@@ -1,5 +1,4 @@
 $('document').ready(function(){
-	alert('questions.js:' + chrome.mathDone);
 	var questions = [["What is 2+2?", '4'],["What is Geoff's middle name?", 'Charles'],["What is the capital of New York?", "Albany"]];
 	var questionNum = Math.floor(Math.random() * questions.length); 
 	var currentQuestion = questions[questionNum];
@@ -9,9 +8,7 @@ $('document').ready(function(){
 		var answer = $('#answer').val();
 		if(answer.toLowerCase() == currentQuestion[1].toLowerCase()){
 			chrome.mathDone = true;
-			chrome.tabs.update(window.currentTabId, {
-				url: 'http://www.facebook.com'
-			});
+			chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'math done!'});
 		}
 		else {
 			alert("WRONG! NO FACEBOOK FOR YOU!");
