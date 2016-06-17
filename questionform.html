@@ -13,12 +13,14 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
-<body class="container">
-  <div class="centered">
-    <h2>Solve this!</h2>
+<body background="org.jpg" class="container">
+  <div class="centered col-xs-12">
+    <h2><span id="category" class="label label-pill label-primary"></span></h2>
     <h3 id="question"></h3>
-    <input type="text" id="answer">
-    <button class="submitQuestion btn btn-submit">Submit Answer</button>
+  	<div class="form-group">
+  	  <input type="text" class="form-control" id="answer">
+  	</div>
+    <button id="submit" class="btn btn-submit btn-success submit submitQuestion">Submit</button>
   </div>
 </body>
 </html>

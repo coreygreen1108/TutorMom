@@ -6,3 +6,6 @@
 	visibility: hidden;
 }
 
+input {
+	width: 100%;
+}
