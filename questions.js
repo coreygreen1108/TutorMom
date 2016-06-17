@@ -3,9 +3,11 @@ $('document').ready(function(){
 	['misc', 'What is Geoff\'s social security number?', '1', 2, 3, 4],
 	['science', 'What is the part of the brain thought responsible for memory?', 'hippocampus'],
 	['history', 'Who was the first president of the United States?', 'George Washington'],
-	['math', 'Solve this equation 4x + 3 = 19', '4']
+	['math', 'Solve this equation 4x + 3 = 19', '4'],
+	['science', 'What can you give a parkinson\'s patient to stop the tremors?', 'l-dopa'],
+	['misc', 'How high a building can go in NYC is based off this term', 'air rights'],
 	];
-	
+
 	var questionNum = Math.floor(Math.random() * questions.length); 
 	var currentQuestion = questions[questionNum];
 	var category = currentQuestion[0];
