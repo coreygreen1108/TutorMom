@@ -6,11 +6,6 @@ $('document').ready(function(){
 	['math', 'Solve this equation 4x + 3 = 19', '4']
 	];
 	
-	// var questions = [["What is 2+2?", '4'],
-	// ["What is Geoff's middle name?", 'Charles'],
-	// ["What is the capital of New York?", "Albany"],
-	// ["What is Geoff's Social Security Number?", '123456789']];
-
 	var questionNum = Math.floor(Math.random() * questions.length); 
 	var currentQuestion = questions[questionNum];
 	var category = currentQuestion[0];
