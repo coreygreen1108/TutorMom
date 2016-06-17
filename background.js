@@ -1,6 +1,8 @@
+var intervalId;
+
 chrome.tabs.onUpdated.addListener(function(tab, info){
   if (info.url && !chrome.mathDone) {
-    if (info.url !== 'chrome-extension://ocghjfkhhhjbelfnfimcnkbocglmgibj/questionform.html') {
+    if (info.url !== 'chrome-extension://dlfbaefmaboanbdoficjjdcpcnjikjba/questionform.html') {
       urlRedirect = info.url;
     }
 		chrome.tabs.update(tab.id, {
@@ -17,8 +19,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       });
   } else if (request.message === 'settings updated!') {
     ActivityControl = request.newSettings;
+    window.clearInterval(intervalId);
+   	intervalId = setInterval(function(){
+	chrome.mathDone = false; }, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);
   } else if (request.message === 'get me the current settings!') {
-    chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'current settings',
+    chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'current settings',
       settings: ActivityControl
   });
   }
@@ -32,9 +37,9 @@ ActivityControl = {
 	startTime: 11,
 	offset: 12, 
 	stopTime: 21,
-	numTimes: 2160
+	numTimes: 20
 };
 
-setInterval(function(){
+intervalId = setInterval(function(){
 	chrome.mathDone = false; 
 }, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);

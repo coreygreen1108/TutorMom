@@ -1,4 +1,6 @@
 $('document').ready(function() {
+  $('#pwalert').hide();
+  $('#successalert').hide();
   var ActivityControl;
 
   chrome.runtime.onMessage.addListener(function (request) {
@@ -16,15 +18,21 @@ $('document').ready(function() {
     }
   });
 
-  chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'get me the current settings!'
+  chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'get me the current settings!'
   });
 
   $('#update').on('click', function () {
-    ActivityControl.startTime = $('#start').val() || ActivityControl.startTime;
-    ActivityControl.stopTime = $('#stop').val() || ActivityControl.stopTime;
-    ActivityControl.numTimes = $('#sessions').val() || ActivityControl.numTimes;
-    ActivityControl.offset = ActivityControl.stopTime - ActivityControl.startTime;
-
-    chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'settings updated!', newSettings: ActivityControl});
-    });
+      if($('#pw').val() == 'password'){
+        $('pwalert').hide();
+        $('#successalert').show();
+        ActivityControl.startTime = $('#start').val() || ActivityControl.startTime;
+        ActivityControl.stopTime = $('#stop').val() || ActivityControl.stopTime;
+        ActivityControl.numTimes = $('#sessions').val() || ActivityControl.numTimes;
+        ActivityControl.offset = ActivityControl.stopTime - ActivityControl.startTime;
+        chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'settings updated!', newSettings: ActivityControl});
+      } else {
+        $('#pwalert').show();
+        $('#successalert').hide();
+      };
+    })
 });
