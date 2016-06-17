@@ -1,6 +1,8 @@
+var intervalId;
+
 chrome.tabs.onUpdated.addListener(function(tab, info){
   if (info.url && !chrome.mathDone) {
-    if (info.url !== 'chrome-extension://ocghjfkhhhjbelfnfimcnkbocglmgibj/questionform.html') {
+    if (info.url !== 'chrome-extension://dlfbaefmaboanbdoficjjdcpcnjikjba/questionform.html') {
       urlRedirect = info.url;
     }
 		chrome.tabs.update(tab.id, {
@@ -31,6 +33,6 @@ chrome.storage.local.set({
   }
 });
 
-setInterval(function(){
+intervalId = setInterval(function(){
 	chrome.mathDone = false; 
 }, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);

@@ -4,18 +4,44 @@
   <head>
     <title>TutorMom Settings</title>
   <script src="jquery-3.0.0.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <!--   <link rel="stylesheet" src="boostrap-3.3.6-dist/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
   <link rel="stylesheet" href="popup.style.css">
   <script src="popup.js"></script>
   </head>
-  <body class="container">
-    <h2>Update your stuff!</h2>
-    <label>Start Time</label>
-    <input class="option" id="start">
-    <label>Stop Time</label>
-    <input class="option" id="stop">
-    <label>Sessions per Day</label>
-    <input class="option" id="sessions">
-    <button id="update">Update</button>
+  <body class="container" background="vPopEp4.png">
+    <div class="centered">
+      <h2><span class="label label-primary">Settings Panel</span></h2> 
+      <br>
+      <div id="pwalert" class="alert alert-danger alert-dismissible" role="alert">Password invalid. Go back to studying!</div>
+      <div id="successalert" class="alert alert-success alert-dismissible" role="alert">You have successfully updated your settings!</div>
+      <h3><span class="label label-info">Tutor Password</span></h3>
+      <div class="input-group">
+        <input type="password" class="form-control" id="pw">
+      </div>
+
+      <h3><span class="label label-info">Start Time</span></h3>
+      <div class="input-group">
+        <input type="text" class="form-control" id="start">
+      </div>
+
+      <h3><span class="label label-info">Stop Time</span></h3>
+      <div class="input-group">
+        <input type="text" class="form-control" id="stop">
+      </div>
+      <h3><span class="label label-info">Problems Per Day</span></h3>
+      <div class="input-group">
+        <input type="text" class="form-control" id="sessions">
+      </div>
+      <br>
+      <div class="container">
+      <button id="update" class="btn btn-submit submit">Update Settings</button>
+      </div>
+
+    </div>
   </body>
 </html>
