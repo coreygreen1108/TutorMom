@@ -39,7 +39,7 @@ function updateSettings() {
     settings.numTimes = result.settings.numTimes || settings.numTimes;
     settings.offset = result.settings.offset || settings.offset;
     window.clearInterval(intervalId);
-      intervalId = setInterval(function(){
+    intervalId = setInterval(function(){
       chrome.mathDone = false; 
     }, (convertToMilli(settings.stopTime) - convertToMilli(settings.startTime)) / settings.numTimes);
   });
