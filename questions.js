@@ -8,7 +8,7 @@ $('document').ready(function(){
 		var answer = $('#answer').val();
 		if(answer.toLowerCase() == currentQuestion[1].toLowerCase()){
 			chrome.mathDone = true;
-			chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'math done!'});
+			chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'math done!'});
 		}
 		else {
 			alert("WRONG! NO FACEBOOK FOR YOU!");
