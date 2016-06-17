@@ -34,12 +34,32 @@ chrome.tabs.onHighlighted.addListener(function(tab){
 	window.currentTab = tab; 
 });
 
-chrome.tabs.onCreated.addListener(function(tab){
-		window.currentTabId = tab.id;
-			chrome.tabs.update(tab.id, {
-				url: 'questionform.html'
-			});
+
+// alert('how many times will we see this?');
+
+
+chrome.tabs.onUpdated.addListener(function(tab, info){
+  alert('background.js:' + chrome.mathDone);
+    if (info.url && !chrome.mathDone) {
+      // chrome.disableUpdate = true;
+  			chrome.tabs.update(tab.id, {
+  				url: 'questionform.html'
+  			});
+    }
 });
+
+// setInterval(function () {
+//   alert('updating');
+// }, 5000);
+
+
+
+
+
+
+
+
+
 // 	alert(tab);
 // 	$(document).ready(function () {
 // 		//alert('inside doc ready');
