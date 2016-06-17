@@ -4,14 +4,20 @@ $('document').ready(function(){
 	var currentQuestion = questions[questionNum];
 	$('#question').text(currentQuestion[0]);
 
-	$('.submitQuestion').on('click', function(elem){
+	$('.submitQuestion').on('click', submit);
+
+	$('#answer').keypress(function(event){
+		if (event.which === 13) submit();
+	});
+
+	function submit () {
 		var answer = $('#answer').val();
 		if(answer.toLowerCase() == currentQuestion[1].toLowerCase()){
 			chrome.mathDone = true;
-			chrome.runtime.sendMessage('dlfbaefmaboanbdoficjjdcpcnjikjba', {message: 'math done!'});
+			chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'math done!'});
 		}
 		else {
-			alert("WRONG! NO FACEBOOK FOR YOU!");
+			alert("WRONG! TRY AGAIN!");
 		}
-	});
+	}
 });

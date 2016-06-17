@@ -1,22 +1,30 @@
-function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
-}
+$('document').ready(function() {
+  var ActivityControl;
 
-document.addEventListener('DOMContentLoaded', function() {
-      renderStatus("Here's a cat!");
-      imageUrl = 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg';
-      var imageResult = document.getElementById('image-result');
-      // Explicitly set the width/height to minimize the number of reflows. For
-      // a single image, this does not matter, but if you're going to embed
-      // multiple external images in your page, then the absence of width/height
-      // attributes causes the popup to resize multiple times.
-      imageResult.width = 800;
-      imageResult.height = 300;
-      imageResult.src = imageUrl;
-      imageResult.hidden = false;
+  chrome.runtime.onMessage.addListener(function (request) {
+    if (request.message === 'current settings') {
+      ActivityControl = {
+        startTime: request.settings.startTime,
+        offset: request.settings.offset, 
+        stopTime: request.settings.stopTime,
+        numTimes: request.settings.numTimes
+      };
 
-    })
+      $('#start').val(ActivityControl.startTime);
+      $('#stop').val(ActivityControl.stopTime);
+      $('#sessions').val(ActivityControl.numTimes);
+    }
+  });
 
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//   alert('hello');
-// });
+  chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'get me the current settings!'
+  });
+
+  $('#update').on('click', function () {
+    ActivityControl.startTime = $('#start').val() || ActivityControl.startTime;
+    ActivityControl.stopTime = $('#stop').val() || ActivityControl.stopTime;
+    ActivityControl.numTimes = $('#sessions').val() || ActivityControl.numTimes;
+    ActivityControl.offset = ActivityControl.stopTime - ActivityControl.startTime;
+
+    chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'settings updated!', newSettings: ActivityControl});
+    });
+});

@@ -1,6 +1,6 @@
 chrome.tabs.onUpdated.addListener(function(tab, info){
   if (info.url && !chrome.mathDone) {
-    if (info.url !== 'chrome-extension://dlfbaefmaboanbdoficjjdcpcnjikjba/questionform.html') {
+    if (info.url !== 'chrome-extension://ocghjfkhhhjbelfnfimcnkbocglmgibj/questionform.html') {
       urlRedirect = info.url;
     }
 		chrome.tabs.update(tab.id, {
@@ -15,6 +15,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     chrome.tabs.update(window.currentTabId, {
         url: urlRedirect
       });
+  } else if (request.message === 'settings updated!') {
+    ActivityControl = request.newSettings;
+  } else if (request.message === 'get me the current settings!') {
+    chrome.runtime.sendMessage('ocghjfkhhhjbelfnfimcnkbocglmgibj', {message: 'current settings',
+      settings: ActivityControl
+  });
   }
 });
 
@@ -23,19 +29,12 @@ function convertToMilli(timeInHours){
 }
 
 ActivityControl = {
-	startTime: 9,
+	startTime: 11,
 	offset: 12, 
 	stopTime: 21,
-	numTimes: 4320
-}
-
-// alert(ActivityControl.startTime + "    STOP TIME     " + ActivityControl.stopTime)
+	numTimes: 2160
+};
 
 setInterval(function(){
 	chrome.mathDone = false; 
 }, (convertToMilli(ActivityControl.stopTime) - convertToMilli(ActivityControl.startTime)) / ActivityControl.numTimes);
-
-// setInterval(function () {
-//   alert('updating');
-// }, 5000);
-
