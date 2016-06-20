@@ -4,7 +4,7 @@ var intervalId,
       offset: 12, 
       stopTime: 21,
       numTimes: 24,
-      categories: ['math', 'science']
+      categories: ['math', 'science', 'history', 'misc']
   };
 
 chrome.tabs.onUpdated.addListener(function(tab, info){
