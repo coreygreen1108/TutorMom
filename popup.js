@@ -29,7 +29,7 @@ $('document').ready(function() {
 
   $('#update').on('click', function () {
       if($('#pw').val() == 'password'){
-        $('pwalert').hide();
+        $('#pwalert').hide();
         $('#successalert').show();
         settings.startTime = $('#start').val() || settings.startTime;
         settings.stopTime = $('#stop').val() || settings.stopTime;
