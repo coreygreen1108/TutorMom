@@ -8,7 +8,7 @@
       "persistent": true
   },
   "browser_action": {
-    "default_icon": "plus.png",
+    "default_icon": "iconaplus.png",
     "default_popup": "popup.html"
   },
   "permissions": ["tabs"]
