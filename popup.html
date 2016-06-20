@@ -1,15 +1,12 @@
 <!doctype html>
-
 <html>
   <head>
     <title>TutorMom Settings</title>
   <script src="jquery-3.0.0.min.js"></script>
   <!--   <link rel="stylesheet" src="boostrap-3.3.6-dist/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
   <link rel="stylesheet" href="popup.style.css">
   <script src="popup.js"></script>
   </head>
@@ -23,12 +20,10 @@
       <div class="input-group">
         <input type="password" class="form-control" id="pw">
       </div>
-
       <h3><span class="label label-info">Start Time</span></h3>
       <div class="input-group">
         <input type="text" class="form-control" id="start">
       </div>
-
       <h3><span class="label label-info">Stop Time</span></h3>
       <div class="input-group">
         <input type="text" class="form-control" id="stop">
@@ -37,11 +32,33 @@
       <div class="input-group">
         <input type="text" class="form-control" id="sessions">
       </div>
+      <h3><span class="label label-info">Select your Grade Level</span></h3>
+      <div class="checkbox">
+        <label><input class="difficulty" type="checkbox" value="1">1</label>
+        <label><input class="difficulty" type="checkbox" value="2">2</label>
+        <label><input class="difficulty" type="checkbox" value="3">3</label>
+        <label><input class="difficulty" type="checkbox" value="4">4</label>
+        <label><input class="difficulty" type="checkbox" value="5">5</label>
+        <label><input class="difficulty" type="checkbox" value="6">6</label>
+        <br>
+        <label><input class="difficulty" type="checkbox" value="7">7</label>
+        <label><input class="difficulty" type="checkbox" value="8">8</label>
+        <label><input class="difficulty" type="checkbox" value="9">9</label>
+        <label><input class="difficulty" type="checkbox" value="10">10</label>
+        <label><input class="difficulty" type="checkbox" value="11">11</label>
+        <label><input class="difficulty" type="checkbox" value="12">12+</label>
+      </div>
+      <h3><span class="label label-info">Subjects to Study</span></h3>
+      <div id="categories" class="checkbox">
+        <label><input class="category" type="checkbox" value="maclass="difficulty" th">Math</label>
+        <label><input class="category" type="checkbox" value="science">Science</label>
+        <label><input class="category" type="checkbox" value="history">History</label>
+        <label><input class="category" type="checkbox" value="misc">Misc</label>
+      </div>
       <br>
       <div class="container">
       <button id="update" class="btn btn-submit submit">Update Settings</button>
       </div>
-
     </div>
   </body>
 </html>

@@ -3,7 +3,8 @@ var intervalId,
       startTime: 9,
       offset: 12, 
       stopTime: 21,
-      numTimes: 24
+      numTimes: 24,
+      categories: ['math', 'science']
   };
 
 chrome.tabs.onUpdated.addListener(function(tab, info){
